@@ -33,35 +33,16 @@ public class SkillTree {
                 CreateSkill.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String SkillName = JOptionPane.showInputDialog(null, "Enter skill name:");
+                        String Goal = JOptionPane.showInputDialog(null, "Enter the skills goal:");
                         String XPAmount = JOptionPane.showInputDialog(null, "Enter the skills XP:");
                         String TimeAmount = JOptionPane.showInputDialog(null, "Enter time to complete skill:");
                         String Category = JOptionPane.showInputDialog(null, "Enter the skills category:");
                         if (XPAmount != null) {
                             try {
-                                int TimeNumber = Integer.parseInt(TimeAmount);
                                 int XPNumber = Integer.parseInt(XPAmount);
-                                JOptionPane.showMessageDialog(null, "The skills name is: " + SkillName + "\nThe skills XP is: " + XPNumber + "\nThe time to complete the skill is: " + TimeAmount + "\nThe skills category is: " + Category);
+                                JOptionPane.showMessageDialog(null, "The skills name is: " + SkillName + "\nThe skills goal is : " + Goal + "\nThe skills XP is: " + XPNumber + "\nThe time to complete the skill is: " + TimeAmount + "\nThe skills category is: " + Category);
 
-                                // Create a square
-                                JFrame skillTreeFrame = null;
-                                Frame[] frames = JFrame.getFrames();
-                                for (Frame f : frames) {
-                                    if (f.getTitle().equals("SkillTreeFrame")) {
-                                        skillTreeFrame = (JFrame)f;
-                                        break;
-                                    }
-                                }
-                                if (skillTreeFrame != null) {
-                                    JPanel panel = new JPanel() {
-                                        public void paintComponent(Graphics g) {
-                                            super.paintComponent(g);
-                                            g.drawRect(50, 50, 100, 100); // Draw a square at (50,50) with width and height of 100 pixels
-                                        }
-                                    };
-                                    skillTreeFrame.getContentPane().add(panel);
-                                    skillTreeFrame.validate();
-                                    skillTreeFrame.repaint();
-                                }
+
                             } catch (NumberFormatException ex) {
                                 JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
                                 CreateSkill();
@@ -132,9 +113,10 @@ public class SkillTree {
         String Category = JOptionPane.showInputDialog(null, "Enter the skills category:");
         if (XPAmount != null) {
             try {
-                int TimeNumber = Integer.parseInt(TimeAmount);
                 int XPNumber = Integer.parseInt(XPAmount);
                 JOptionPane.showMessageDialog(null, "The skills name is: " + SkillName + "\nThe skills XP is: " + XPNumber + "\nThe time to complete the skill is: " + TimeAmount + "\nThe skills category is: " + Category);
+
+
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
                 CreateSkill();
