@@ -41,12 +41,34 @@ public class SkillTree {
                                 int TimeNumber = Integer.parseInt(TimeAmount);
                                 int XPNumber = Integer.parseInt(XPAmount);
                                 JOptionPane.showMessageDialog(null, "The skills name is: " + SkillName + "\nThe skills XP is: " + XPNumber + "\nThe time to complete the skill is: " + TimeAmount + "\nThe skills category is: " + Category);
+
+                                // Create a square
+                                JFrame skillTreeFrame = null;
+                                Frame[] frames = JFrame.getFrames();
+                                for (Frame f : frames) {
+                                    if (f.getTitle().equals("SkillTreeFrame")) {
+                                        skillTreeFrame = (JFrame)f;
+                                        break;
+                                    }
+                                }
+                                if (skillTreeFrame != null) {
+                                    JPanel panel = new JPanel() {
+                                        public void paintComponent(Graphics g) {
+                                            super.paintComponent(g);
+                                            g.drawRect(50, 50, 100, 100); // Draw a square at (50,50) with width and height of 100 pixels
+                                        }
+                                    };
+                                    skillTreeFrame.getContentPane().add(panel);
+                                    skillTreeFrame.validate();
+                                    skillTreeFrame.repaint();
+                                }
                             } catch (NumberFormatException ex) {
                                 JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
                                 CreateSkill();
                             }
                         }
                     }
+
                 });
 
 
@@ -86,6 +108,7 @@ public class SkillTree {
                 skillTreeExitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         skillTreeFrame.dispose();
+                        frame.setVisible(true);
                     }
                 });
                 JPanel skillTreePanel = new JPanel();
