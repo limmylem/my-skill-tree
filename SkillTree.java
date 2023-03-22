@@ -33,14 +33,14 @@ public class SkillTree {
                 CreateSkill.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String SkillName = JOptionPane.showInputDialog(null, "Enter skill name:");
-                        String Goal = JOptionPane.showInputDialog(null, "Enter the skills goal:");
-                        String XPAmount = JOptionPane.showInputDialog(null, "Enter the skills XP:");
-                        String TimeAmount = JOptionPane.showInputDialog(null, "Enter time to complete skill:");
+                        String SkillGoal = JOptionPane.showInputDialog(null, "Enter the skills goal:");
+                        String SkillXP = JOptionPane.showInputDialog(null, "Enter the skills XP:");
+                        String SkillTime = JOptionPane.showInputDialog(null, "Enter time to complete skill:");
                         String Category = JOptionPane.showInputDialog(null, "Enter the skills category:");
-                        if (XPAmount != null) {
+                        if (SkillXP != null) {
                             try {
-                                int XPNumber = Integer.parseInt(XPAmount);
-                                JOptionPane.showMessageDialog(null, "The skills name is: " + SkillName + "\nThe skills goal is : " + Goal + "\nThe skills XP is: " + XPNumber + "\nThe time to complete the skill is: " + TimeAmount + "\nThe skills category is: " + Category);
+                                int XPNumber = Integer.parseInt(SkillXP);
+                                JOptionPane.showMessageDialog(null, "The skills name is: " + SkillName + "\nThe skills goal is : " + SkillGoal + "\nThe skills XP is: " + XPNumber + "\nThe time to complete the skill is: " + SkillTime + "\nThe skills category is: " + Category);
 
 
                             } catch (NumberFormatException ex) {
@@ -54,7 +54,33 @@ public class SkillTree {
 
 
                 JMenuItem CreateChallenge = new JMenuItem("Create Challenge");
+                CreateChallenge.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        String ChallengeName = JOptionPane.showInputDialog(null, "Enter the challenges name:");
+                        String ChallengeGoal = JOptionPane.showInputDialog(null, "Enter the challenges goal:");
+                        String ChallengeXP = JOptionPane.showInputDialog(null, "Enter the challenges XP:");
+                        if (ChallengeXP != null) {
+                            try {
+                                int XPNumber = Integer.parseInt(ChallengeXP);
+                                JOptionPane.showMessageDialog(null, "The challenges name is: " + ChallengeName + "\nThe challenges goal is : " + ChallengeGoal + "\nThe challenges XP is: " + XPNumber);
+
+
+                            } catch (NumberFormatException ex) {
+                                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+                                CreateChallenge();
+                            }
+                        }
+                    }
+                });
                 JMenuItem CreateItem = new JMenuItem("Create Item");
+                CreateItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        String ItemName = JOptionPane.showInputDialog(null, "Enter the items name:");
+                        String ItemEmoji = JOptionPane.showInputDialog(null, "get emojis from https://emojipedia.org\nEnter the skills emoji:");
+                        String ItemLink = JOptionPane.showInputDialog(null, "Enter the items Link");
+                        JOptionPane.showMessageDialog(null, "The items name is: " + ItemName + "\nThe item emoji is: " + ItemEmoji + "\nThe items link is: " + ItemLink);
+                    }
+                });
                 JMenuItem CreateNewTree = new JMenuItem("Create new skill tree");
                 CreateNewTree.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -122,5 +148,8 @@ public class SkillTree {
                 CreateSkill();
             }
         }
+    }
+    static  void CreateChallenge() {
+
     }
 }
