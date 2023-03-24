@@ -10,9 +10,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class DailyQuoteGUIFile extends JFrame {
-    private JTextArea quoteTextArea;
-    private ArrayList<String> quotes = new ArrayList<>();
-    private LocalDate currentDate;
+    public static JTextArea quoteTextArea;
+    public static ArrayList<String> quotes = new ArrayList<>();
+    public static LocalDate currentDate;
 
     public DailyQuoteGUIFile() {
         setTitle("Daily Quote");

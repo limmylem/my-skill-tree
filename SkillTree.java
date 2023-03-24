@@ -1,23 +1,20 @@
+import com.sun.source.tree.Tree;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class SkillTree {
+
     public static void main(String[] args) {
         JFrame Main = new JFrame("main");
         Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        Main.setVisible(true);
 
-
-        JButton MenuButton = new JButton("Menu");
-        MenuButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Main.setVisible(true);
-            }
-        });
+        JPanel MainPanel = new JPanel();
+        MainPanel.setLayout(new FlowLayout());
         JButton ExitButton = new JButton("Exit");
         ExitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -25,14 +22,14 @@ public class SkillTree {
             }
         });
 
-        panel.add(ExitButton);
+        MainPanel.add(ExitButton);
 
         JButton skillTreeButton = new JButton("Skill Tree");
         skillTreeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFrame skillTreeFrame = new JFrame("Skill Tree");
-                skillTreeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                skillTreeFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                JFrame SkillTreeFrame = new JFrame("Skill Tree");
+                SkillTreeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                SkillTreeFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 Main.dispose();
                 // add the code for the popup menu here
                 JPopupMenu popupMenu = new JPopupMenu();
@@ -83,7 +80,7 @@ public class SkillTree {
                 CreateItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         String ItemName = JOptionPane.showInputDialog(null, "Enter the items name:");
-                        String ItemEmoji = JOptionPane.showInputDialog(null, "get emojis from https://emojipedia.org\nEnter the skills emoji:");
+                        String ItemEmoji = JOptionPane.showInputDialog(null, "get emojis from https://emojipedia.org\nEnter the items emoji:");
                         String ItemLink = JOptionPane.showInputDialog(null, "Enter the items Link");
                         JOptionPane.showMessageDialog(null, "The items name is: " + ItemName + "\nThe item emoji is: " + ItemEmoji + "\nThe items link is: " + ItemLink);
                     }
@@ -96,6 +93,18 @@ public class SkillTree {
                         NewSkillTree.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         NewSkillTree.setExtendedState(JFrame.MAXIMIZED_BOTH);
                         NewSkillTree.setVisible(true);
+                        JPanel SkillTreePanel = new JPanel();
+                        SkillTreePanel.setLayout(new FlowLayout());
+                        SkillTreeFrame.dispose();
+                        JButton MenuButton = new JButton("Menu");
+                        MenuButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                NewSkillTree.setVisible(false);
+                                Main.setVisible(true);
+                            }
+                        });
+                        SkillTreePanel.add(MenuButton);
+                        NewSkillTree.add(SkillTreePanel);
                         NewSkillTree.addMouseListener(new MouseAdapter() {
                             public void mousePressed(MouseEvent e) {
                                 if (SwingUtilities.isRightMouseButton(e)) {
@@ -110,7 +119,7 @@ public class SkillTree {
                 popupMenu.add(CreateItem);
                 popupMenu.add(CreateNewTree);
 
-                skillTreeFrame.addMouseListener(new MouseAdapter() {
+                SkillTreeFrame.addMouseListener(new MouseAdapter() {
                     public void mousePressed(MouseEvent e) {
                         if (SwingUtilities.isRightMouseButton(e)) {
                             popupMenu.show(e.getComponent(), e.getX(), e.getY());
@@ -121,22 +130,22 @@ public class SkillTree {
                 JButton skillTreeExitButton = new JButton("Exit Skill Tree");
                 skillTreeExitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        skillTreeFrame.dispose();
+                        SkillTreeFrame.dispose();
                         Main.setVisible(true);
                     }
                 });
                 JPanel skillTreePanel = new JPanel();
                 skillTreePanel.setLayout(new FlowLayout());
                 skillTreePanel.add(skillTreeExitButton);
-                skillTreeFrame.add(skillTreePanel);
+                SkillTreeFrame.add(skillTreePanel);
 
-                skillTreeFrame.pack();
-                skillTreeFrame.setVisible(true);
+                SkillTreeFrame.pack();
+                SkillTreeFrame.setVisible(true);
             }
         });
 
-        panel.add(skillTreeButton);
-        Main.add(panel);
+        MainPanel.add(skillTreeButton);
+        Main.add(MainPanel);
         Main.setVisible(true);
     }
     static void CreateSkill() {
@@ -157,6 +166,19 @@ public class SkillTree {
         }
     }
     static  void CreateChallenge() {
+        String ChallengeName = JOptionPane.showInputDialog(null, "Enter the challenges name:");
+        String ChallengeGoal = JOptionPane.showInputDialog(null, "Enter the challenges goal:");
+        String ChallengeXP = JOptionPane.showInputDialog(null, "Enter the challenges XP:");
+        if (ChallengeXP != null) {
+            try {
+                int XPNumber = Integer.parseInt(ChallengeXP);
+                JOptionPane.showMessageDialog(null, "The challenges name is: " + ChallengeName + "\nThe challenges goal is : " + ChallengeGoal + "\nThe challenges XP is: " + XPNumber);
 
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.");
+                CreateChallenge();
+            }
+        }
     }
 }
