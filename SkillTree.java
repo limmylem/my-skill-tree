@@ -4,13 +4,20 @@ import java.awt.event.*;
 
 public class SkillTree {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("main");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        JFrame Main = new JFrame("main");
+        Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Main.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
+
+        JButton MenuButton = new JButton("Menu");
+        MenuButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Main.setVisible(true);
+            }
+        });
         JButton ExitButton = new JButton("Exit");
         ExitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -26,7 +33,7 @@ public class SkillTree {
                 JFrame skillTreeFrame = new JFrame("Skill Tree");
                 skillTreeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 skillTreeFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                frame.dispose();
+                Main.dispose();
                 // add the code for the popup menu here
                 JPopupMenu popupMenu = new JPopupMenu();
                 JMenuItem CreateSkill = new JMenuItem("Create Skill");
@@ -115,7 +122,7 @@ public class SkillTree {
                 skillTreeExitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         skillTreeFrame.dispose();
-                        frame.setVisible(true);
+                        Main.setVisible(true);
                     }
                 });
                 JPanel skillTreePanel = new JPanel();
@@ -129,8 +136,8 @@ public class SkillTree {
         });
 
         panel.add(skillTreeButton);
-        frame.add(panel);
-        frame.setVisible(true);
+        Main.add(panel);
+        Main.setVisible(true);
     }
     static void CreateSkill() {
         String SkillName = JOptionPane.showInputDialog(null, "Enter skill name:");
