@@ -24,7 +24,42 @@ public class SkillTree {
             SkillTreeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             SkillTreeFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             Main.dispose();
-            // add the code for the popup menu here
+
+            JMenuBar MenuBar = new JMenuBar();
+
+            JMenu FileMenu = new JMenu("file");
+            JMenu EditMenu = new JMenu("Edit");
+
+            JMenu ExitMenu = new JMenu("Exit");
+
+            JMenuItem ExitBarButton = new JMenuItem("exit");
+            ExitBarButton.addActionListener(e1 -> {
+                SkillTreeFrame.dispose();
+                Main.setVisible(true);
+            });
+
+            JMenuItem NewTree = new JMenuItem("new tree");
+            NewTree.addActionListener(e16 -> {
+                String TreeName = JOptionPane.showInputDialog(null, "Enter skill tree name:");
+                JFrame NewSkillTree = new JFrame(TreeName);
+                NewSkillTree.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                NewSkillTree.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                NewSkillTree.setVisible(true);
+                JPanel SkillTreePanel = new JPanel();
+                SkillTreePanel.setLayout(new FlowLayout());
+                SkillTreeFrame.dispose();
+            });
+
+            MenuBar.add(FileMenu);
+            MenuBar.add(EditMenu);
+            MenuBar.add(ExitMenu);
+
+            SkillTreeFrame.setJMenuBar(MenuBar);
+
+            FileMenu.add(NewTree);
+            ExitMenu.add(ExitBarButton);
+
+
             JPopupMenu popupMenu = new JPopupMenu();
             JMenuItem CreateSkill = new JMenuItem("Create Skill");
             CreateSkill.addActionListener(e1 -> {
@@ -78,9 +113,12 @@ public class SkillTree {
                 NewSkillTree.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 NewSkillTree.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 NewSkillTree.setVisible(true);
+
                 JPanel SkillTreePanel = new JPanel();
                 SkillTreePanel.setLayout(new FlowLayout());
+
                 SkillTreeFrame.dispose();
+
                 JButton MenuButton = new JButton("Menu");
                 MenuButton.addActionListener(e141 -> {
                     NewSkillTree.setVisible(false);
@@ -89,9 +127,12 @@ public class SkillTree {
                 SkillTreePanel.add(MenuButton);
                 NewSkillTree.add(SkillTreePanel);
                 NewSkillTree.addMouseListener(new MouseAdapter() {
-                    public void mousePressed(MouseEvent e14) {
-                        if (SwingUtilities.isRightMouseButton(e14)) {
-                            popupMenu.show(e14.getComponent(), e14.getX(), e14.getY());
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (SwingUtilities.isRightMouseButton(e)) {
+                            // Show the popup menu
+                            popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                            System.out.println("Mouse clicked on NewSkillTree");
                         }
                     }
                 });
@@ -109,14 +150,8 @@ public class SkillTree {
                 }
             });
 
-            JButton skillTreeExitButton = new JButton("Exit Skill Tree");
-            skillTreeExitButton.addActionListener(e15 -> {
-                SkillTreeFrame.dispose();
-                Main.setVisible(true);
-            });
             JPanel skillTreePanel = new JPanel();
             skillTreePanel.setLayout(new FlowLayout());
-            skillTreePanel.add(skillTreeExitButton);
             SkillTreeFrame.add(skillTreePanel);
 
             SkillTreeFrame.pack();
